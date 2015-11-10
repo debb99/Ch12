@@ -13,12 +13,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class CustomFrame extends JFrame{
-	public CustomFrame(String name) {
+	public CustomFrame(String name, JPanel colorPanel) {
 		super(name);
 		
 		panel = new JPanel(new BorderLayout());
@@ -50,11 +51,26 @@ public class CustomFrame extends JFrame{
 		{          
 			public void actionPerformed(ActionEvent event)          
 			{
-				Color myColor = new Color(
-						Float.parseFloat(redField.getText()),
-						Float.parseFloat(greenField.getText()),
-						Float.parseFloat(blueField.getText()));
-				System.out.println(myColor.toString());
+				boolean fieldsValid = true;
+				float r = 0, g = 0, b = 0;
+				try{
+					r = Float.parseFloat(redField.getText());
+					g = Float.parseFloat(greenField.getText());
+					b = Float.parseFloat(blueField.getText());
+				} catch (NumberFormatException e){
+					fieldsValid = false;
+				}
+				
+				if(fieldsValid){
+					if(checkRange(r) && checkRange(g) && checkRange(b)){
+						panel.setBackground(new Color(r, g, b));
+					} else {
+						JOptionPane.showMessageDialog(panel, "Please use values between 0 and 1.", "ERROR", JOptionPane.ERROR_MESSAGE);
+					}
+				} else {
+					JOptionPane.showMessageDialog(panel, "Please use numbers.", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
+				
 			}
 		}
 			
@@ -71,5 +87,10 @@ public class CustomFrame extends JFrame{
 		add(panel);
 		pack();
 	}
+	
+	public static boolean checkRange(float n){
+		return (n >= 0 && n <= 1);
+	}
+	
 	JPanel panel;
 }
