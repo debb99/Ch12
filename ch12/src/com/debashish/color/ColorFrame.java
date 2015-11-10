@@ -24,7 +24,7 @@ public class ColorFrame extends JFrame {
 			backgroundTest(event.getActionCommand(), "Blue", Color.BLUE);
 			backgroundTest(event.getActionCommand(), "Black", Color.BLACK);
 			backgroundTest(event.getActionCommand(), "White", Color.WHITE);
-			
+			//this is the check for the colors
 			if(event.getActionCommand().contains("Custom")){
 				customFrame.setVisible(true);
 			}
