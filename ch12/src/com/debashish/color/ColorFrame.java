@@ -24,7 +24,7 @@ public class ColorFrame extends JFrame {
 			backgroundTest(event.getActionCommand(), "Blue", Color.BLUE);
 			backgroundTest(event.getActionCommand(), "Black", Color.BLACK);
 			backgroundTest(event.getActionCommand(), "White", Color.WHITE);
-			//this is the check for the colors
+			
 			if(event.getActionCommand().contains("Custom")){
 				customFrame.setVisible(true);
 			}
@@ -37,13 +37,13 @@ public class ColorFrame extends JFrame {
 	
 	public ColorFrame(String name) {
 		super(name);
-		colorPanel = new JPanel(new BorderLayout());
+		colorPanel = new JPanel(new BorderLayout(10, 10));
 		colorPanel.setPreferredSize(new Dimension(CENTER_WIDTH, CENTER_HEIGHT));
 		add(colorPanel, BorderLayout.CENTER);
 		
 		initCustomFrame();
 		
-		JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
+		JPanel buttonPanel = new JPanel(new GridLayout(1, 3, 10, 10));
 		buttonPanel.setPreferredSize(new Dimension(100, 45));
 		JButton redButton = new JButton("<html><font color = red>Red");
 		JButton greenButton = new JButton("<html><font color = green>Green");
@@ -73,7 +73,7 @@ public class ColorFrame extends JFrame {
 	}
 	
 	private void initCustomFrame(){
-		customFrame = new CustomFrame("Custom Color Settings");
+		customFrame = new CustomFrame("Custom Color Settings", colorPanel);
 		customFrame.setSize(400, 275);
 		customFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	}
