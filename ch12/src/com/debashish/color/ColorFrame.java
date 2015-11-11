@@ -75,6 +75,7 @@ public class ColorFrame extends JFrame {
 	private void initCustomFrame(){
 		customFrame = new CustomFrame("Custom Color Settings", colorPanel);
 		customFrame.setSize(400, 275);
+		customFrame.setLocationByPlatform(true);
 		customFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	}
 

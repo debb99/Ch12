@@ -21,7 +21,6 @@ import javax.swing.SwingConstants;
 public class CustomFrame extends JFrame{
 	public CustomFrame(String name, JPanel colorPanel) {
 		super(name);
-		
 		panel = new JPanel(new BorderLayout());
 		JPanel fieldPanel = new JPanel(new GridBagLayout());
 		//fieldPanel.setPreferredSize(new Dimension(400, 400));
@@ -33,11 +32,11 @@ public class CustomFrame extends JFrame{
 			gc.insets = new Insets(10, 5, 10, 5);
 			gc.gridx = 0;
 			gc.gridy = 0;
-			fieldPanel.add(new JLabel("Amount Red: "), gc);
+			fieldPanel.add(new JLabel("<html>Amount<font color = red> Red: "), gc);
 			gc.gridy = 1;
-			fieldPanel.add(new JLabel("Amount Green: "), gc);
+			fieldPanel.add(new JLabel("<html>Amount<font color = green> Green: "), gc);
 			gc.gridy = 2;
-			fieldPanel.add(new JLabel("Amount Blue: "), gc);
+			fieldPanel.add(new JLabel("<html>Amount<font color = blue> Blue: "), gc);
 
 			gc.gridx = 1;
 			gc.gridy = 0;
@@ -63,12 +62,13 @@ public class CustomFrame extends JFrame{
 				
 				if(fieldsValid){
 					if(checkRange(r) && checkRange(g) && checkRange(b)){
-						panel.setBackground(new Color(r, g, b));
+						colorPanel.setBackground(new Color(r, g, b));
+						setVisible(false);
 					} else {
 						JOptionPane.showMessageDialog(panel, "Please use values between 0 and 1.", "ERROR", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(panel, "Please use numbers.", "ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(panel, "Please input number values.", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
@@ -76,7 +76,7 @@ public class CustomFrame extends JFrame{
 			
 		JPanel submitPanel = new JPanel(new GridLayout(2, 1));
 		submitPanel.setPreferredSize(new Dimension(100, 100));
-			JButton submit = new JButton("Set Color");
+			JButton submit = new JButton("Apply Color");
 			submit.addActionListener(new bListen());
 			submitPanel.add(new JLabel("Values must be between 0 and 1", SwingConstants.CENTER));
 			submitPanel.add(submit);

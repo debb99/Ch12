@@ -6,7 +6,7 @@ public class ColorFrameTest {
 	public static void main(String[] args) {
 		ColorFrame myFrame = new ColorFrame("Colors");
 		
-		myFrame.setLocation(30, 30);
+		myFrame.setLocation(40, 40);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		myFrame.setSize(600,600);
 		myFrame.setVisible(true);
