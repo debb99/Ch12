@@ -71,7 +71,6 @@ public class CalculatorFrame extends JFrame{
 			buttonPanel.add(makeOperatorButton("="));
 			buttonPanel.add(makeOperatorButton("+"));
 			
-			
 		JPanel displayPanel = new JPanel(new GridLayout(1, 1));
 			displayPanel.setPreferredSize(new Dimension(getWidth(), 100));
 			display = new JTextField();
@@ -101,7 +100,14 @@ public class CalculatorFrame extends JFrame{
 					display.setText(e.getActionCommand());
 					start = false;
 				} else {
-					display.setText(display.getText() + e.getActionCommand());
+					if(e.getActionCommand() == "."){
+						if(!display.getText().contains(".")){
+							display.setText(display.getText() + e.getActionCommand());
+						}
+					} else {
+						display.setText(display.getText() + e.getActionCommand());
+					}
+					
 				}
 			}
 		}
@@ -123,16 +129,29 @@ public class CalculatorFrame extends JFrame{
 						theOperator = e.getActionCommand();
 						start = true;
 					} else {
-						float newVal = eval(lastValue, displayVal(), theOperator);
-						output(newVal);
-						lastValue = newVal;
-						theOperator = e.getActionCommand();
+						if(e.getActionCommand() != "="){
+							consecVal = 0;
+							float newVal = eval(lastValue, displayVal(), theOperator);
+							output(newVal);
+							lastValue = newVal;
+							theOperator = e.getActionCommand();
+						} else {
+							consecVal = displayVal();
+							float newVal = eval(lastValue, consecVal, theOperator);
+							output(newVal);
+							lastValue = newVal;
+						}
 						start = true;
 					}
 				} else {
-					theOperator = e.getActionCommand();
+					if(!display.getText().isEmpty() && lastValue != 0 && e.getActionCommand() == "="){
+						float newVal = eval(lastValue, consecVal, theOperator);
+						lastValue = newVal;
+						output(newVal);
+					} else {
+						theOperator = e.getActionCommand();
+					}
 				}
-				
 			}
 		}
 		JButton tempButton = new JButton(op);
@@ -148,6 +167,7 @@ public class CalculatorFrame extends JFrame{
 		case "-": return a - b;
 		case "*": return a * b;
 		case "/": return a / b;
+		case "=": 
 		default: return 0;
 		}
 	}
@@ -176,6 +196,7 @@ public class CalculatorFrame extends JFrame{
 	
 	JTextField display;
 	private float lastValue = 0;
+	private float consecVal = 0;
 	private String theOperator = null;
 	private boolean start;
 	private static final Color MODIFIED_ORANGE = new Color(1F, .749F, 0F);
