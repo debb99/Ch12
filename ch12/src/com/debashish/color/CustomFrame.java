@@ -19,16 +19,16 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class CustomFrame extends JFrame{
-	public CustomFrame(String name, JPanel colorPanel) {
+	public CustomFrame(String name, final JPanel colorPanel) {
 		super(name);
 		panel = new JPanel(new BorderLayout());
 		JPanel fieldPanel = new JPanel(new GridBagLayout());
 		//fieldPanel.setPreferredSize(new Dimension(400, 400));
 		GridBagConstraints gc = new GridBagConstraints();
 			int labelWidth = 10;
-			JTextField redField = new JTextField("0", labelWidth);
-			JTextField greenField = new JTextField("0", labelWidth);
-			JTextField blueField = new JTextField("0", labelWidth);
+			final JTextField redField = new JTextField("0", labelWidth);
+			final JTextField greenField = new JTextField("0", labelWidth);
+			final JTextField blueField = new JTextField("0", labelWidth);
 			gc.insets = new Insets(10, 5, 10, 5);
 			gc.gridx = 0;
 			gc.gridy = 0;
@@ -62,6 +62,7 @@ public class CustomFrame extends JFrame{
 				
 				if(fieldsValid){
 					if(checkRange(r) && checkRange(g) && checkRange(b)){
+						colorPanel.setBackground(new Color(r, g, b));
 						colorPanel.setBackground(new Color(r, g, b));
 						setVisible(false);
 					} else {

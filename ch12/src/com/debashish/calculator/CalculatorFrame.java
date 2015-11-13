@@ -23,7 +23,6 @@ public class CalculatorFrame extends JFrame{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("fx.png")));
 		start = true;
 		createControlPanel();
-		
 	}
 	
 	private void createControlPanel() {
@@ -71,7 +70,7 @@ public class CalculatorFrame extends JFrame{
 			buttonPanel.add(makeOperatorButton("="));
 			buttonPanel.add(makeOperatorButton("+"));
 			
-		JPanel displayPanel = new JPanel(new GridLayout(1, 1));
+		JPanel displayPanel = new JPanel(new GridLayout(1, 2));
 			displayPanel.setPreferredSize(new Dimension(getWidth(), 100));
 			display = new JTextField();
 			display.setHorizontalAlignment(JTextField.RIGHT);
